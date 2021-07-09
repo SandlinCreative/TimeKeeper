@@ -13,8 +13,9 @@ namespace TimeTracker
         public DateTime OutTime { get; set; }
         public double TimeSpan { get; set; }
         public double Rate { get; set; }
-        public double Billabe { get; set; }
+        public double Billable { get; set; }
         public string Notes { get; set; }
+
 
         public Entry(string location, DateTime inTime, DateTime outTime, double rate, string notes)
         {
@@ -23,7 +24,7 @@ namespace TimeTracker
             OutTime = outTime;
             TimeSpan = CalcTimeSpan();
             Rate = rate;
-            Billabe = CalcBillableAmount();
+            Billable = CalcBillableAmount();
             Notes = notes;
         }
 
@@ -35,8 +36,14 @@ namespace TimeTracker
 
         public double CalcBillableAmount()
         {
-            Billabe = TimeSpan * Rate;
-            return Billabe;
+            //Billable = Decimal.Round(new Decimal(TimeSpan * Rate), 2);
+            Billable = (TimeSpan * Rate);
+            return Billable;
+        }
+
+        public override string ToString()
+        {
+            return $"Entry Object Details\n {Location}, {InTime}, {OutTime}, {Rate}, {Billable}, {Notes}";
         }
     }
 }

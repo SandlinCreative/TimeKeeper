@@ -26,15 +26,23 @@ namespace TimeTracker
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Entry> entryData = new ObservableCollection<Entry>();
 
         public MainWindow()
         {
+            [DllImport("kernel32.dll", SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            static extern bool AllocConsole();
+
+            AllocConsole();
+            string consoleTitle = "     ______                            __         ____          __                 __ " + System.Environment.NewLine + "    / ____/____   ____   _____ ____   / /___     / __ \\ __  __ / /_ ____   __  __ / /_" + System.Environment.NewLine + "   / /    / __ \\ / __ \\ / ___// __ \\ / // _ \\   / / / // / / // __// __ \\ / / / // __/" + System.Environment.NewLine + "  / /___ / /_/ // / / /(__  )/ /_/ // //  __/  / /_/ // /_/ // /_ / /_/ // /_/ // /_  " + System.Environment.NewLine + "  \\____/ \\____//_/ /_//____/ \\____//_/ \\___/   \\____/ \\__,_/ \\__// .___/ \\__,_/ \\__/  " + System.Environment.NewLine + "                                                                /_/                   " + System.Environment.NewLine;
+            System.Console.WriteLine(consoleTitle);
             InitializeComponent();
 
 
             //Entry testEntry = new Entry("Business Office", "Some notes.", 8, 11.25f, 28.75f);
 
-            ObservableCollection<Entry> entryData = new ObservableCollection<Entry>();
+            
 
             for (int i = 0; i <= 2; i++)
             {
@@ -47,30 +55,29 @@ namespace TimeTracker
                     ));
             }
 
-            dg_list.DataContext = entryData;
+            
         }
 
         private void dg_list_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
+            Console.WriteLine("Auto Generating Column " + e.Column.Header);
+
         }
 
-        private void dg_list_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        private void dg_list_LoadingRow(object sender, DataGridRowEventArgs e)
         {
+            Console.WriteLine("Loading Row...\n" + e.Row.Item);
         }
 
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void dg_list_LoadingRowDetails(object sender, DataGridRowDetailsEventArgs e)
         {
-            System.Console.WriteLine("I am heard.");
+            Console.WriteLine("Row Details Loading...");
         }
 
-
-        private void Window_Initialized(object sender, EventArgs e)
+        private void dg_list_Loaded(object sender, RoutedEventArgs e)
         {
-            AllocConsole();
+            Console.WriteLine("DataGrid Loaded.");
+            dg_list.DataContext = entryData;
         }
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
     }
 }
