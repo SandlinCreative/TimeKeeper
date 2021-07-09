@@ -17,6 +17,7 @@ using System.Data;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
+using System.Runtime.InteropServices;
 
 namespace TimeTracker
 {
@@ -51,12 +52,25 @@ namespace TimeTracker
 
         private void dg_list_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            Console.WriteLine(e);
         }
 
         private void dg_list_AddingNewItem(object sender, AddingNewItemEventArgs e)
         {
-            Console.WriteLine(e);
         }
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            System.Console.WriteLine("I am heard.");
+        }
+
+
+        private void Window_Initialized(object sender, EventArgs e)
+        {
+            AllocConsole();
+        }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
     }
 }
