@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -38,17 +39,17 @@
         </Grid.Resources>
         <!---->
 
-        <Label Content="Location" Grid.ColumnSpan="2" Margin="0,0,0,24" Grid.RowSpan="2"/>
-        <Label Content="Date" Grid.Column="2" Margin="0,0,0,24" Grid.RowSpan="2"/>
-        <Label Content="Time In" Grid.Column="3" Margin="0,0,0,24" Grid.RowSpan="2"/>
-        <Label Content="Time Out" Grid.Column="4" Margin="0,0,0,24" Grid.RowSpan="2"/>
-        <Button Content="Add" Grid.Column="5" Grid.Row="1" Margin="0,0,0,384" Grid.RowSpan="2" />
+        <Label Content="Location" Grid.ColumnSpan="2" Margin="0,0,0,24"/>
+        <Label Content="Date" Grid.Column="2" Margin="0,0,0,24"/>
+        <Label Content="Time In" Grid.Column="3" Margin="0,0,0,24"/>
+        <Label Content="Time Out" Grid.Column="4" Margin="0,0,0,24"/>
+        <Button Content="Add" Grid.Column="5" Grid.Row="1" Margin="0,0,0,384" />
 
-        <ComboBox Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,384" Grid.RowSpan="2" />
-        <DatePicker x:Name="datepicker" Grid.Row="1" Grid.Column="2" Margin="0,0,0,384" Grid.RowSpan="2"/>
+        <ComboBox Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,384" />
+        <DatePicker x:Name="datepicker" Grid.Row="1" Grid.Column="2" Margin="0,0,0,384"/>
 
-        <TextBox x:Name="bx_timein" Grid.Row="1" Grid.Column="3" Margin="0,0,0,384" Grid.RowSpan="2"/>
-        <TextBox x:Name="bx_timeout" Grid.Row="1" Grid.Column="4" Margin="0,0,0,384" Grid.RowSpan="2"/>
+        <TextBox x:Name="bx_timein" Grid.Row="1" Grid.Column="3" Margin="0,0,0,384"/>
+        <TextBox x:Name="bx_timeout" Grid.Row="1" Grid.Column="4" Margin="0,0,0,384"/>
 
         <DataGrid x:Name="dg_list" ItemsSource="{Binding}" AlternatingRowBackground="LightBlue" AlternationCount="2" Grid.Row="2" Grid.ColumnSpan="6" AutoGenerateColumns="false" AutoGeneratingColumn="dg_list_AutoGeneratingColumn" LoadingRow="dg_list_LoadingRow" LoadingRowDetails="dg_list_LoadingRowDetails" Loaded="dg_list_Loaded">
             <DataGrid.Columns>
